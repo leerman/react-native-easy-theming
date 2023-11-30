@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`not apply 1. without attributes: 1. without attributes 1`] = `
+
+
+import React from 'react';
+import Text from 'react-native';
+const App=()=>{
+  return <Text>hello</Text>
+}
+      
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import React from "react";
+import Text from "react-native";
+const App = () => {
+  return /*#__PURE__*/ React.createElement(Text, null, "hello");
+};
+
+`;
