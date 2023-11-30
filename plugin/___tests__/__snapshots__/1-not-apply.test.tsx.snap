@@ -1,0 +1,51 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`not apply 2. declare component: 2. declare component 1`] = `
+
+
+const App=()=>{
+  return null
+}
+      
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+const App = () => {
+  return null;
+};
+
+`;
+
+exports[`not apply 3. export component: 3. export component 1`] = `
+
+
+export const App=()=>{
+    return null
+}
+        
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+export const App = () => {
+  return null;
+};
+
+`;
+
+exports[`not apply 4. export component wit some imports: 4. export component wit some imports 1`] = `
+
+
+import React from 'react';
+export const App=()=>{
+    return null
+}
+        
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import React from "react";
+export const App = () => {
+  return null;
+};
+
+`;
