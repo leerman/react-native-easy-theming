@@ -49,5 +49,25 @@ pluginTester({
         }
       `,
     },
+    {
+      title: "with boolean value raw",
+      code: `
+        import React from 'react';
+        import Text from 'react-native';
+        const App=()=>{
+          return <Text s-enabled>hello</Text>
+        }
+      `,
+    },
+    {
+      title: "with boolean value inside expression",
+      code: `
+        import React from 'react';
+        import Text from 'react-native';
+        const App=()=>{
+          return <Text s-enabled={false}>hello</Text>
+        }
+      `,
+    },
   ],
 });

@@ -103,3 +103,59 @@ const App = () => {
 };
 
 `;
+
+exports[`not apply 5. with boolean value raw: 5. with boolean value raw 1`] = `
+
+
+import React from 'react';
+import Text from 'react-native';
+const App=()=>{
+  return <Text s-enabled>hello</Text>
+}
+      
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import React from "react";
+import Text from "react-native";
+const App = () => {
+  return /*#__PURE__*/ React.createElement(
+    Text,
+    {
+      style: {
+        enabled: true,
+      },
+    },
+    "hello"
+  );
+};
+
+`;
+
+exports[`not apply 6. with boolean value inside expression: 6. with boolean value inside expression 1`] = `
+
+
+import React from 'react';
+import Text from 'react-native';
+const App=()=>{
+  return <Text s-enabled={false}>hello</Text>
+}
+      
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import React from "react";
+import Text from "react-native";
+const App = () => {
+  return /*#__PURE__*/ React.createElement(
+    Text,
+    {
+      style: {
+        enabled: false,
+      },
+    },
+    "hello"
+  );
+};
+
+`;
