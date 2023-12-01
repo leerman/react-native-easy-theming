@@ -29,5 +29,15 @@ pluginTester({
         }
       `,
     },
+    {
+      title: "with value inside expression",
+      code: `
+        import React from 'react';
+        import Text from 'react-native';
+        const App=()=>{
+          return <Text s-background-color={"red"}>hello</Text>
+        }
+      `,
+    },
   ],
 });
