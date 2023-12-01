@@ -1,16 +1,23 @@
 import { JSXAttribute } from "@babel/types";
 import * as types from "@babel/types";
 import { isColor } from "./isColor";
+import { enumStyleNames } from "./constants";
 
 const parseStringLiteral = ({
   t,
   value,
   themeIdentifier,
+  key,
 }: {
+  key: string;
   value: string;
   t: typeof types;
   themeIdentifier: types.Identifier;
 }) => {
+  if (enumStyleNames.has(key)) {
+    return { value: t.stringLiteral(value), addThemeImport: false };
+  }
+
   if (isColor(value)) {
     return { value: t.stringLiteral(value), addThemeImport: false };
   }
@@ -30,10 +37,12 @@ const parseStringLiteral = ({
 };
 
 export const getStyleValue = ({
+  key,
   attribute,
   t,
   themeIdentifier,
 }: {
+  key: string;
   attribute: JSXAttribute;
   t: typeof types;
   themeIdentifier: types.Identifier;
@@ -47,6 +56,7 @@ export const getStyleValue = ({
       t,
       themeIdentifier,
       value: attribute.value.value,
+      key,
     });
   }
 
@@ -57,6 +67,7 @@ export const getStyleValue = ({
           t,
           themeIdentifier,
           value: attribute.value.expression.value,
+          key,
         });
       case "NumericLiteral":
       case "BooleanLiteral":

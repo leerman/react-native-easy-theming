@@ -50,6 +50,7 @@ export default function (babel: { types: typeof types }): PluginObj {
               const { addThemeImport, value } = getStyleValue({
                 attribute: attr,
                 themeIdentifier,
+                key: rawStyleName,
                 t,
               });
 

@@ -124,5 +124,16 @@ pluginTester({
         }
       `,
     },
+    {
+      title: "with predefined values",
+      code: `
+        import React from 'react';
+        import Text from 'react-native';
+        const getPadding=()=>10
+        const App=()=>{
+          return <Text s-position="absolute">hello</Text>
+        }
+      `,
+    },
   ],
 });
