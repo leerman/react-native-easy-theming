@@ -51,29 +51,28 @@ export const getStyleValue = ({
   }
 
   if (attribute.value.type === "JSXExpressionContainer") {
-    if (attribute.value.expression.type === "StringLiteral") {
-      return parseStringLiteral({
-        t,
-        themeIdentifier,
-        value: attribute.value.expression.value,
-      });
-    }
-    if (
-      attribute.value.expression.type === "NumericLiteral" ||
-      attribute.value.expression.type === "BooleanLiteral" ||
-      attribute.value.expression.type === "Identifier"
-    ) {
-      return {
-        value: attribute.value.expression,
-        addThemeImport: false,
-      };
-    }
+    switch (attribute.value.expression.type) {
+      case "StringLiteral":
+        return parseStringLiteral({
+          t,
+          themeIdentifier,
+          value: attribute.value.expression.value,
+        });
+      case "NumericLiteral":
+      case "BooleanLiteral":
+      case "Identifier":
+      case "CallExpression":
+        return {
+          value: attribute.value.expression,
+          addThemeImport: false,
+        };
 
-    throw new Error(
-      "getStyleValue unparsed expression: " + attribute.value.expression.type
-    );
-
-    // console.log(attribute.value.expression);
+      default:
+        throw new Error(
+          "getStyleValue unparsed expression: " +
+            attribute.value.expression.type
+        );
+    }
   }
 
   throw new Error("getStyleValue unparsed type: " + attribute.value.type);

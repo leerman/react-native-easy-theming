@@ -80,5 +80,16 @@ pluginTester({
         }
       `,
     },
+    {
+      title: "with local variable constant",
+      code: `
+        import React from 'react';
+        import Text from 'react-native';
+        const getEnabled=()=>true
+        const App=()=>{
+          return <Text s-enabled={getEnabled()}>hello</Text>
+        }
+      `,
+    },
   ],
 });
