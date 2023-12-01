@@ -2,7 +2,7 @@ import { pluginTester } from "babel-plugin-tester";
 import plugin from "../index";
 
 pluginTester({
-  title: "not apply",
+  title: "primitives",
   plugin,
   snapshot: true,
   babelOptions: {

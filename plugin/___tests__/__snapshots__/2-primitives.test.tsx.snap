@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`not apply 1. without attributes: 1. without attributes 1`] = `
+exports[`primitives 1. without attributes: 1. without attributes 1`] = `
 
 
 import React from 'react';
@@ -20,7 +20,7 @@ const App = () => {
 
 `;
 
-exports[`not apply 2. with plane color value: 2. with plane color value 1`] = `
+exports[`primitives 2. with plane color value: 2. with plane color value 1`] = `
 
 
 import React from 'react';
@@ -48,7 +48,7 @@ const App = () => {
 
 `;
 
-exports[`not apply 3. with string value inside expression: 3. with string value inside expression 1`] = `
+exports[`primitives 3. with string value inside expression: 3. with string value inside expression 1`] = `
 
 
 import React from 'react';
@@ -76,7 +76,7 @@ const App = () => {
 
 `;
 
-exports[`not apply 4. with number value inside expression: 4. with number value inside expression 1`] = `
+exports[`primitives 4. with number value inside expression: 4. with number value inside expression 1`] = `
 
 
 import React from 'react';
@@ -104,7 +104,7 @@ const App = () => {
 
 `;
 
-exports[`not apply 5. with boolean value raw: 5. with boolean value raw 1`] = `
+exports[`primitives 5. with boolean value raw: 5. with boolean value raw 1`] = `
 
 
 import React from 'react';
@@ -132,7 +132,7 @@ const App = () => {
 
 `;
 
-exports[`not apply 6. with boolean value inside expression: 6. with boolean value inside expression 1`] = `
+exports[`primitives 6. with boolean value inside expression: 6. with boolean value inside expression 1`] = `
 
 
 import React from 'react';
