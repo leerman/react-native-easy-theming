@@ -113,5 +113,16 @@ pluginTester({
         }
       `,
     },
+    {
+      title: "with number operation",
+      code: `
+        import React from 'react';
+        import Text from 'react-native';
+        const getPadding=()=>10
+        const App=()=>{
+          return <Text s-padding={getPadding()+10}>hello</Text>
+        }
+      `,
+    },
   ],
 });

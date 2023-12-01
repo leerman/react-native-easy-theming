@@ -279,3 +279,33 @@ const App = () => {
 };
 
 `;
+
+exports[`primitives 11. with number operation: 11. with number operation 1`] = `
+
+
+import React from 'react';
+import Text from 'react-native';
+const getPadding=()=>10
+const App=()=>{
+  return <Text s-padding={getPadding()+10}>hello</Text>
+}
+      
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import React from "react";
+import Text from "react-native";
+const getPadding = () => 10;
+const App = () => {
+  return /*#__PURE__*/ React.createElement(
+    Text,
+    {
+      style: {
+        padding: getPadding() + 10,
+      },
+    },
+    "hello"
+  );
+};
+
+`;
