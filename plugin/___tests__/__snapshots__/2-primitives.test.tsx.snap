@@ -190,7 +190,7 @@ const App = () => {
 
 `;
 
-exports[`primitives 8. with local variable constant: 8. with local variable constant 1`] = `
+exports[`primitives 8. with function value: 8. with function value 1`] = `
 
 
 import React from 'react';
@@ -212,6 +212,66 @@ const App = () => {
     {
       style: {
         enabled: getEnabled(),
+      },
+    },
+    "hello"
+  );
+};
+
+`;
+
+exports[`primitives 9. with unary operation: 9. with unary operation 1`] = `
+
+
+import React from 'react';
+import Text from 'react-native';
+const enabled=true
+const App=()=>{
+  return <Text s-enabled={!enabled}>hello</Text>
+}
+      
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import React from "react";
+import Text from "react-native";
+const enabled = true;
+const App = () => {
+  return /*#__PURE__*/ React.createElement(
+    Text,
+    {
+      style: {
+        enabled: !enabled,
+      },
+    },
+    "hello"
+  );
+};
+
+`;
+
+exports[`primitives 10. with binary operation: 10. with binary operation 1`] = `
+
+
+import React from 'react';
+import Text from 'react-native';
+const enabled=true
+const App=()=>{
+  return <Text s-enabled={enabled!==true}>hello</Text>
+}
+      
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import React from "react";
+import Text from "react-native";
+const enabled = true;
+const App = () => {
+  return /*#__PURE__*/ React.createElement(
+    Text,
+    {
+      style: {
+        enabled: enabled !== true,
       },
     },
     "hello"

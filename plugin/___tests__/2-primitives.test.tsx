@@ -81,13 +81,35 @@ pluginTester({
       `,
     },
     {
-      title: "with local variable constant",
+      title: "with function value",
       code: `
         import React from 'react';
         import Text from 'react-native';
         const getEnabled=()=>true
         const App=()=>{
           return <Text s-enabled={getEnabled()}>hello</Text>
+        }
+      `,
+    },
+    {
+      title: "with unary operation",
+      code: `
+        import React from 'react';
+        import Text from 'react-native';
+        const enabled=true
+        const App=()=>{
+          return <Text s-enabled={!enabled}>hello</Text>
+        }
+      `,
+    },
+    {
+      title: "with binary operation",
+      code: `
+        import React from 'react';
+        import Text from 'react-native';
+        const enabled=true
+        const App=()=>{
+          return <Text s-enabled={enabled!==true}>hello</Text>
         }
       `,
     },

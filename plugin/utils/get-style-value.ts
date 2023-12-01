@@ -62,6 +62,8 @@ export const getStyleValue = ({
       case "BooleanLiteral":
       case "Identifier":
       case "CallExpression":
+      case "UnaryExpression":
+      case "BinaryExpression":
         return {
           value: attribute.value.expression,
           addThemeImport: false,
