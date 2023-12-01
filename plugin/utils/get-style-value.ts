@@ -19,6 +19,9 @@ export const getStyleValue = (attribute: JSXAttribute, t: typeof types) => {
     if (attribute.value.expression.type === "StringLiteral") {
       return parseStringLiteral(attribute.value.expression.value, t);
     }
+    if (attribute.value.expression.type === "NumericLiteral") {
+      return t.numericLiteral(attribute.value.expression.value);
+    }
     // console.log(attribute.value.expression);
   }
 

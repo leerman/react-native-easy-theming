@@ -48,7 +48,7 @@ const App = () => {
 
 `;
 
-exports[`not apply 3. with value inside expression: 3. with value inside expression 1`] = `
+exports[`not apply 3. with string value inside expression: 3. with string value inside expression 1`] = `
 
 
 import React from 'react';
@@ -68,6 +68,34 @@ const App = () => {
     {
       style: {
         backgroundColor: "red",
+      },
+    },
+    "hello"
+  );
+};
+
+`;
+
+exports[`not apply 4. with number value inside expression: 4. with number value inside expression 1`] = `
+
+
+import React from 'react';
+import Text from 'react-native';
+const App=()=>{
+  return <Text s-p={16}>hello</Text>
+}
+      
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import React from "react";
+import Text from "react-native";
+const App = () => {
+  return /*#__PURE__*/ React.createElement(
+    Text,
+    {
+      style: {
+        padding: 16,
       },
     },
     "hello"

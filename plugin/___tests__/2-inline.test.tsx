@@ -30,12 +30,22 @@ pluginTester({
       `,
     },
     {
-      title: "with value inside expression",
+      title: "with string value inside expression",
       code: `
         import React from 'react';
         import Text from 'react-native';
         const App=()=>{
           return <Text s-background-color={"red"}>hello</Text>
+        }
+      `,
+    },
+    {
+      title: "with number value inside expression",
+      code: `
+        import React from 'react';
+        import Text from 'react-native';
+        const App=()=>{
+          return <Text s-p={16}>hello</Text>
         }
       `,
     },
