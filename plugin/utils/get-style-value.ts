@@ -58,15 +58,13 @@ export const getStyleValue = ({
         value: attribute.value.expression.value,
       });
     }
-    if (attribute.value.expression.type === "NumericLiteral") {
+    if (
+      attribute.value.expression.type === "NumericLiteral" ||
+      attribute.value.expression.type === "BooleanLiteral" ||
+      attribute.value.expression.type === "Identifier"
+    ) {
       return {
-        value: t.numericLiteral(attribute.value.expression.value),
-        addThemeImport: false,
-      };
-    }
-    if (attribute.value.expression.type === "BooleanLiteral") {
-      return {
-        value: t.booleanLiteral(attribute.value.expression.value),
+        value: attribute.value.expression,
         addThemeImport: false,
       };
     }

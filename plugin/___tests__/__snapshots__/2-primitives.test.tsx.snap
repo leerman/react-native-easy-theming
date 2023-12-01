@@ -159,3 +159,33 @@ const App = () => {
 };
 
 `;
+
+exports[`primitives 7. with local variable: 7. with local variable 1`] = `
+
+
+import React from 'react';
+import Text from 'react-native';
+const App=()=>{
+  const enabled=true;
+  return <Text s-enabled={enabled}>hello</Text>
+}
+      
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import React from "react";
+import Text from "react-native";
+const App = () => {
+  const enabled = true;
+  return /*#__PURE__*/ React.createElement(
+    Text,
+    {
+      style: {
+        enabled: enabled,
+      },
+    },
+    "hello"
+  );
+};
+
+`;
