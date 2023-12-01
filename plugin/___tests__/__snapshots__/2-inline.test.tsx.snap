@@ -19,3 +19,31 @@ const App = () => {
 };
 
 `;
+
+exports[`not apply 2. with plane color value: 2. with plane color value 1`] = `
+
+
+import React from 'react';
+import Text from 'react-native';
+const App=()=>{
+  return <Text s-background-color="red">hello</Text>
+}
+      
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import React from "react";
+import Text from "react-native";
+const App = () => {
+  return /*#__PURE__*/ React.createElement(
+    Text,
+    {
+      style: {
+        backgroundColor: "red",
+      },
+    },
+    "hello"
+  );
+};
+
+`;

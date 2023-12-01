@@ -19,5 +19,15 @@ pluginTester({
         }
       `,
     },
+    {
+      title: "with plane color value",
+      code: `
+        import React from 'react';
+        import Text from 'react-native';
+        const App=()=>{
+          return <Text s-background-color="red">hello</Text>
+        }
+      `,
+    },
   ],
 });

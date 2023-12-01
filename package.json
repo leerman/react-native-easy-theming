@@ -12,10 +12,13 @@
   "license": "ISC",
   "dependencies": {
     "@babel/core": "7.23.5",
-    "@babel/types": "7.23.5"
+    "@babel/types": "7.23.5",
+    "validate-color": "^2.2.4"
   },
   "devDependencies": {
+    "@babel/plugin-syntax-jsx": "7.23.3",
     "@babel/preset-env": "7.23.5",
+    "@babel/preset-react": "7.23.3",
     "@babel/preset-typescript": "7.23.3",
     "@types/babel__core": "7.20.5",
     "babel-plugin-tester": "11.0.4",
