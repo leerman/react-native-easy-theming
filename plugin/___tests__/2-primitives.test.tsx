@@ -135,5 +135,15 @@ pluginTester({
         }
       `,
     },
+    {
+      title: "with array values",
+      code: `
+        import React from 'react';
+        import Text from 'react-native';
+        const App=()=>{
+          return <Text s-transform={[]}>hello</Text>
+        }
+      `,
+    },
   ],
 });

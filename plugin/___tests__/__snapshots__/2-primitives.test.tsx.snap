@@ -339,3 +339,31 @@ const App = () => {
 };
 
 `;
+
+exports[`primitives 13. with array values: 13. with array values 1`] = `
+
+
+import React from 'react';
+import Text from 'react-native';
+const App=()=>{
+  return <Text s-transform={[]}>hello</Text>
+}
+      
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import React from "react";
+import Text from "react-native";
+const App = () => {
+  return /*#__PURE__*/ React.createElement(
+    Text,
+    {
+      style: {
+        transform: [],
+      },
+    },
+    "hello"
+  );
+};
+
+`;
