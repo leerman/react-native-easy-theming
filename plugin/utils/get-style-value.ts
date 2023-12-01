@@ -2,32 +2,73 @@ import { JSXAttribute } from "@babel/types";
 import * as types from "@babel/types";
 import { isColor } from "./isColor";
 
-const parseStringLiteral = (value: string, t: typeof types) => {
+const parseStringLiteral = ({
+  t,
+  value,
+  themeIdentifier,
+}: {
+  value: string;
+  t: typeof types;
+  themeIdentifier: types.Identifier;
+}) => {
   if (isColor(value)) {
-    return t.stringLiteral(value);
+    return { value: t.stringLiteral(value), addThemeImport: false };
   }
+
+  return {
+    value: value
+      .split(".")
+      .reduce(
+        (prev: types.Expression, next) =>
+          t.memberExpression(prev, t.identifier(next)),
+        themeIdentifier
+      ),
+    addThemeImport: true,
+  };
 
   throw new Error("parseStringLiteral unparsed type: " + value);
 };
 
-export const getStyleValue = (attribute: JSXAttribute, t: typeof types) => {
+export const getStyleValue = ({
+  attribute,
+  t,
+  themeIdentifier,
+}: {
+  attribute: JSXAttribute;
+  t: typeof types;
+  themeIdentifier: types.Identifier;
+}) => {
   if (!attribute.value) {
-    return t.booleanLiteral(true);
+    return { value: t.booleanLiteral(true), addThemeImport: false };
   }
 
   if (attribute.value.type === "StringLiteral") {
-    return parseStringLiteral(attribute.value.value, t);
+    return parseStringLiteral({
+      t,
+      themeIdentifier,
+      value: attribute.value.value,
+    });
   }
 
   if (attribute.value.type === "JSXExpressionContainer") {
     if (attribute.value.expression.type === "StringLiteral") {
-      return parseStringLiteral(attribute.value.expression.value, t);
+      return parseStringLiteral({
+        t,
+        themeIdentifier,
+        value: attribute.value.expression.value,
+      });
     }
     if (attribute.value.expression.type === "NumericLiteral") {
-      return t.numericLiteral(attribute.value.expression.value);
+      return {
+        value: t.numericLiteral(attribute.value.expression.value),
+        addThemeImport: false,
+      };
     }
     if (attribute.value.expression.type === "BooleanLiteral") {
-      return t.booleanLiteral(attribute.value.expression.value);
+      return {
+        value: t.booleanLiteral(attribute.value.expression.value),
+        addThemeImport: false,
+      };
     }
 
     throw new Error(

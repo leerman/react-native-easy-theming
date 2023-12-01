@@ -3,37 +3,26 @@ import * as types from "@babel/types";
 import { getStyleValue } from "./utils/get-style-value";
 import { mapStyleName } from "./utils/map-style-name";
 import { transformStyleName } from "./utils/transform-style-name";
+import { addThemeImports } from "./utils/add-theme-imports";
 
 const STYLES_PREFIX = "s-";
 
 export default function (babel: { types: typeof types }): PluginObj {
   var t = babel.types;
 
-  const useThemeIdentifier = t.identifier("useTheme");
-  const themeIdentifier = t.identifier("$$theme");
-  const themeDeclaration = t.variableDeclaration("const", [
-    t.variableDeclarator(
-      themeIdentifier,
-      t.callExpression(useThemeIdentifier, [])
-    ),
-  ]);
-
-  const themeImport = t.importDeclaration(
-    [t.importSpecifier(useThemeIdentifier, useThemeIdentifier)],
-    t.stringLiteral("./useTheme")
-  );
-
   return {
     visitor: {
       JSXOpeningElement(path, { opts }) {
         const prefix = (opts as any).prefix ?? STYLES_PREFIX;
+        const themeIdentifier = path.scope.generateUidIdentifier("theme");
+
         if (
           path.node.name.type === "JSXIdentifier" &&
           path.node.name.name === "Text"
         ) {
           let styleAttribute;
           let newStyleObject;
-          let hasStyleChanges = false;
+          let shouldAddThemeImport = false;
 
           path.node.attributes.forEach(function (attr) {
             if (attr.type === "JSXSpreadAttribute") return;
@@ -58,12 +47,19 @@ export default function (babel: { types: typeof types }): PluginObj {
                 path.node.attributes.push(styleAttribute);
               }
 
+              const { addThemeImport, value } = getStyleValue({
+                attribute: attr,
+                themeIdentifier,
+                t,
+              });
+
               newStyleObject.properties.push(
-                t.objectProperty(
-                  t.identifier(styleName),
-                  getStyleValue(attr, t)
-                )
+                t.objectProperty(t.identifier(styleName), value)
               );
+
+              if (addThemeImport) {
+                shouldAddThemeImport = true;
+              }
 
               // newStyleObject.properties.push(
               //   t.objectProperty(
@@ -85,20 +81,12 @@ export default function (babel: { types: typeof types }): PluginObj {
                 path.node.attributes.indexOf(attr),
                 1
               );
-              hasStyleChanges = true;
             }
           });
 
-          // if (hasStyleChanges) {
-          //   const parentFunction = path.getFunctionParent();
-          //   if (parentFunction.node.body.type !== "BlockStatement") return;
-
-          //   parentFunction.node.body.body.unshift(themeDeclaration);
-
-          //   const program = path.scope.getProgramParent();
-          //   if (program.path.node.type !== "Program") return;
-          //   program.path.node.body.unshift(themeImport);
-          // }
+          if (shouldAddThemeImport) {
+            addThemeImports({ path, t, themeIdentifier });
+          }
         }
       },
     },

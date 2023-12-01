@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`connect theme 1. inline theme path: 1. inline theme path 1`] = `
+
+
+import React from 'react';
+import Text from 'react-native';
+const App=()=>{
+  return <Text s-background-color="colors.background.primary">hello</Text>
+}
+      
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import { useTheme as _useTheme } from "./useTheme";
+import React from "react";
+import Text from "react-native";
+const App = () => {
+  const _theme = _useTheme();
+  return /*#__PURE__*/ React.createElement(
+    Text,
+    {
+      style: {
+        backgroundColor: _theme.colors.background.primary,
+      },
+    },
+    "hello"
+  );
+};
+
+`;
