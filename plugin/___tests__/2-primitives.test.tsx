@@ -155,5 +155,15 @@ pluginTester({
         }
       `,
     },
+    {
+      title: "with undefined value",
+      code: `
+        import React from 'react';
+        import Text from 'react-native';
+        const App=()=>{
+          return <Text s-transform={undefined}>hello</Text>
+        }
+      `,
+    },
   ],
 });
