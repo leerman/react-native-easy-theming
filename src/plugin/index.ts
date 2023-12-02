@@ -16,10 +16,7 @@ export default function (babel: { types: typeof types }): PluginObj {
         const prefix = (opts as any).prefix ?? STYLES_PREFIX;
         const themeIdentifier = path.scope.generateUidIdentifier("theme");
 
-        if (
-          path.node.name.type === "JSXIdentifier" &&
-          path.node.name.name === "Text"
-        ) {
+        if (path.node.name.type === "JSXIdentifier") {
           let styleAttribute;
           let newStyleObject;
           let shouldAddThemeImport = false;

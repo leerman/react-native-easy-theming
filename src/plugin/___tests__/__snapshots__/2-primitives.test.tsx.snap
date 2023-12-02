@@ -423,3 +423,31 @@ const App = () => {
 };
 
 `;
+
+exports[`primitives 16. View component: 16. View component 1`] = `
+
+
+import React from 'react';
+import Text from 'react-native';
+const App=()=>{
+  return <View s-padding={20}>hello</View>
+}
+      
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import React from "react";
+import Text from "react-native";
+const App = () => {
+  return /*#__PURE__*/ React.createElement(
+    View,
+    {
+      style: {
+        padding: 20,
+      },
+    },
+    "hello"
+  );
+};
+
+`;

@@ -165,5 +165,15 @@ pluginTester({
         }
       `,
     },
+    {
+      title: "View component",
+      code: `
+        import React from 'react';
+        import Text from 'react-native';
+        const App=()=>{
+          return <View s-padding={20}>hello</View>
+        }
+      `,
+    },
   ],
 });
