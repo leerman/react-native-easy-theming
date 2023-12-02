@@ -12,7 +12,7 @@ const App=()=>{
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
-import { useTheme as _useTheme } from "./useTheme";
+import { useTheme as _useTheme } from "react-native-theme";
 import React from "react";
 import Text from "react-native";
 const App = () => {
@@ -42,7 +42,7 @@ const App=()=>{
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
-import { useTheme as _useTheme } from "./useTheme";
+import { useTheme as _useTheme } from "react-native-theme";
 import React from "react";
 import Text from "react-native";
 const App = () => {
@@ -74,7 +74,7 @@ const App=()=>{
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
-import { useTheme as _useTheme } from "./useTheme";
+import { useTheme as _useTheme } from "react-native-theme";
 import React from "react";
 import Text from "react-native";
 const App = () => {
@@ -108,7 +108,7 @@ const App=()=>{
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
-import { useTheme as _useTheme } from "./useTheme";
+import { useTheme as _useTheme } from "react-native-theme";
 import React from "react";
 import Text from "react-native";
 const App = () => {

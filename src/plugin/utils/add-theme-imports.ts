@@ -1,5 +1,4 @@
-import { NodePath } from "@babel/core";
-import * as types from "@babel/types";
+import { NodePath, types } from "@babel/core";
 
 export const addThemeImports = ({
   path,
@@ -28,7 +27,7 @@ export const addThemeImports = ({
 
   const themeImport = t.importDeclaration(
     [t.importSpecifier(useThemeIdentifier, t.identifier("useTheme"))],
-    t.stringLiteral("./useTheme")
+    t.stringLiteral("react-native-theme")
   );
 
   program.path.node.body.unshift(themeImport);
