@@ -1,8 +1,10 @@
 {
   "compilerOptions": {
     "outDir": ".",
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "declaration": true,
+    "jsx": "react-native"
   },
   "include": ["src"],
-  "exclude": ["!src"]
+  "exclude": ["!src", "src/plugin/___tests__"]
 }
