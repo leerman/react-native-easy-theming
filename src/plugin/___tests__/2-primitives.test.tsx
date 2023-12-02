@@ -175,5 +175,15 @@ pluginTester({
         }
       `,
     },
+    {
+      title: "with 2 styles props",
+      code: `
+        import React from 'react';
+        import Text from 'react-native';
+        const App=()=>{
+          return <View s-padding={20} s-transform={undefined} s-background-color={(theme)=>theme.color}>hello</View>
+        }
+      `,
+    },
   ],
 });

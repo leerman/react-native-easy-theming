@@ -451,3 +451,35 @@ const App = () => {
 };
 
 `;
+
+exports[`primitives 17. with 2 styles props: 17. with 2 styles props 1`] = `
+
+
+import React from 'react';
+import Text from 'react-native';
+const App=()=>{
+  return <View s-padding={20} s-transform={undefined} s-background-color={(theme)=>theme.color}>hello</View>
+}
+      
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import { useTheme as _useTheme } from "react-native-theme";
+import React from "react";
+import Text from "react-native";
+const App = () => {
+  const _theme = _useTheme();
+  return /*#__PURE__*/ React.createElement(
+    View,
+    {
+      style: {
+        padding: 20,
+        transform: undefined,
+        backgroundColor: (() => _theme.color)(),
+      },
+    },
+    "hello"
+  );
+};
+
+`;

@@ -1,5 +1,4 @@
-import { PluginObj } from "@babel/core";
-import * as types from "@babel/types";
+import { PluginObj, types } from "@babel/core";
 import { getStyleValue } from "./utils/get-style-value";
 import { mapStyleName } from "./utils/map-style-name";
 import { transformStyleName } from "./utils/transform-style-name";
@@ -17,11 +16,11 @@ export default function (babel: { types: typeof types }): PluginObj {
         const themeIdentifier = path.scope.generateUidIdentifier("theme");
 
         if (path.node.name.type === "JSXIdentifier") {
-          let styleAttribute;
-          let newStyleObject;
           let shouldAddThemeImport = false;
+          const styleProps = [];
+          const deleteIndexes = [];
 
-          path.node.attributes.forEach(function (attr) {
+          path.node.attributes.forEach(function (attr, index) {
             if (attr.type === "JSXSpreadAttribute") return;
 
             if (attr.name.name === "style") {
@@ -34,16 +33,6 @@ export default function (babel: { types: typeof types }): PluginObj {
               const rawStyleName = attr.name.name.slice(prefix.length);
               const styleName = transformStyleName(mapStyleName(rawStyleName));
 
-              if (!styleAttribute) {
-                styleAttribute = t.jSXAttribute(
-                  t.jSXIdentifier("style"),
-                  t.jSXExpressionContainer(t.objectExpression([]))
-                );
-
-                newStyleObject = styleAttribute.value.expression;
-                path.node.attributes.push(styleAttribute);
-              }
-
               const { addThemeImport, value } = getStyleValue({
                 path,
                 attribute: attr,
@@ -52,20 +41,26 @@ export default function (babel: { types: typeof types }): PluginObj {
                 t,
               });
 
-              newStyleObject.properties.push(
-                t.objectProperty(t.identifier(styleName), value)
-              );
+              styleProps.push(t.objectProperty(t.identifier(styleName), value));
+              deleteIndexes.push(index);
 
               if (addThemeImport) {
                 shouldAddThemeImport = true;
               }
-
-              path.node.attributes.splice(
-                path.node.attributes.indexOf(attr),
-                1
-              );
             }
           });
+
+          if (styleProps.length > 0) {
+            path.node.attributes.push(
+              t.jSXAttribute(
+                t.jSXIdentifier("style"),
+                t.jSXExpressionContainer(t.objectExpression(styleProps))
+              )
+            );
+            deleteIndexes.reverse().forEach((index) => {
+              path.node.attributes.splice(index, 1);
+            });
+          }
 
           if (shouldAddThemeImport) {
             addThemeImports({ path, t, themeIdentifier });
