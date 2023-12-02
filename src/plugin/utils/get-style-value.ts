@@ -86,6 +86,12 @@ export const getStyleValue = ({
         };
       case "ArrowFunctionExpression":
       case "FunctionExpression":
+        if (attribute.value.expression.params.length === 0) {
+          return {
+            value: attribute.value.expression,
+            addThemeImport: false,
+          };
+        }
         if (attribute.value.expression.params[0].type !== "Identifier") {
           throw new Error(
             "theme not passed to params" + attribute.value.expression.type

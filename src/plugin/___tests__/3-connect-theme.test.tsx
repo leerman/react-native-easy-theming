@@ -42,7 +42,7 @@ pluginTester({
       `,
     },
     {
-      title: "arrow function for calculate value with return",
+      title: "regular function for calculate value with return",
       code: `
         import React from 'react';
         import Text from 'react-native';
@@ -50,6 +50,16 @@ pluginTester({
           return <Text s-background-color={function(theme){
             return theme.name==='light'?'red':'white';
           }}>hello</Text>
+        }
+      `,
+    },
+    {
+      title: "arrow function for calculate value without param",
+      code: `
+        import React from 'react';
+        import Text from 'react-native';
+        const App=()=>{
+          return <Text s-background-color={()=>theme.name==='light'?'red':'white'}>hello</Text>
         }
       `,
     },

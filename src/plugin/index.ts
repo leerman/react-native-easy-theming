@@ -63,22 +63,6 @@ export default function (babel: { types: typeof types }): PluginObj {
                 shouldAddThemeImport = true;
               }
 
-              // newStyleObject.properties.push(
-              //   t.objectProperty(
-              //     t.identifier(styleName),
-              //     t.isJSXExpressionContainer(attr.value)
-              //       ? attr.value.expression
-              //       : isColor((attr.value as any).value)
-              //       ? t.stringLiteral((attr.value as any).value)
-              //       : (attr.value as any).value
-              //           .split(".")
-              //           .reduce(
-              //             (prev, next) =>
-              //               t.memberExpression(prev, t.identifier(next)),
-              //             themeIdentifier
-              //           )
-              //   )
-              // );
               path.node.attributes.splice(
                 path.node.attributes.indexOf(attr),
                 1

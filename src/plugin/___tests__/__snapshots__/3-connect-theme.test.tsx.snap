@@ -94,7 +94,7 @@ const App = () => {
 
 `;
 
-exports[`connect theme 4. arrow function for calculate value with return: 4. arrow function for calculate value with return 1`] = `
+exports[`connect theme 4. regular function for calculate value with return: 4. regular function for calculate value with return 1`] = `
 
 
 import React from 'react';
@@ -120,6 +120,34 @@ const App = () => {
         backgroundColor: (function () {
           return theme.name === "light" ? "red" : "white";
         })(),
+      },
+    },
+    "hello"
+  );
+};
+
+`;
+
+exports[`connect theme 5. arrow function for calculate value without param: 5. arrow function for calculate value without param 1`] = `
+
+
+import React from 'react';
+import Text from 'react-native';
+const App=()=>{
+  return <Text s-background-color={()=>theme.name==='light'?'red':'white'}>hello</Text>
+}
+      
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import React from "react";
+import Text from "react-native";
+const App = () => {
+  return /*#__PURE__*/ React.createElement(
+    Text,
+    {
+      style: {
+        backgroundColor: () => (theme.name === "light" ? "red" : "white"),
       },
     },
     "hello"
