@@ -2,6 +2,7 @@ import { JSXAttribute } from "@babel/types";
 import * as types from "@babel/types";
 import { isColor } from "./isColor";
 import { enumStyleNames } from "./constants";
+import { NodePath } from "@babel/core";
 
 const parseStringLiteral = ({
   t,
@@ -41,11 +42,13 @@ export const getStyleValue = ({
   attribute,
   t,
   themeIdentifier,
+  path,
 }: {
   key: string;
   attribute: JSXAttribute;
   t: typeof types;
   themeIdentifier: types.Identifier;
+  path: NodePath<types.JSXOpeningElement>;
 }) => {
   if (!attribute.value) {
     return { value: t.booleanLiteral(true), addThemeImport: false };
@@ -79,6 +82,30 @@ export const getStyleValue = ({
         return {
           value: attribute.value.expression,
           addThemeImport: false,
+        };
+      case "ArrowFunctionExpression":
+      case "FunctionExpression":
+        if (attribute.value.expression.params[0].type !== "Identifier") {
+          throw new Error(
+            "theme not passed to params" + attribute.value.expression.type
+          );
+        }
+
+        const paramName = attribute.value.expression.params[0].name;
+        attribute.value.expression.params = [];
+        path.scope.traverse(attribute.value.expression.body, {
+          Identifier: (identifierNode) => {
+            if (identifierNode.node.name === paramName) {
+              identifierNode.replaceWith(themeIdentifier);
+            }
+          },
+        });
+
+        const value = t.callExpression(attribute.value.expression, []);
+
+        return {
+          value,
+          addThemeImport: true,
         };
 
       default:

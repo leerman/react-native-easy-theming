@@ -29,3 +29,101 @@ const App = () => {
 };
 
 `;
+
+exports[`connect theme 2. arrow function for calculate value: 2. arrow function for calculate value 1`] = `
+
+
+import React from 'react';
+import Text from 'react-native';
+const App=()=>{
+  return <Text s-background-color={(theme)=>theme.name==='light'?'red':'white'}>hello</Text>
+}
+      
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import { useTheme as _useTheme } from "./useTheme";
+import React from "react";
+import Text from "react-native";
+const App = () => {
+  const _theme = _useTheme();
+  return /*#__PURE__*/ React.createElement(
+    Text,
+    {
+      style: {
+        backgroundColor: (() => (_theme.name === "light" ? "red" : "white"))(),
+      },
+    },
+    "hello"
+  );
+};
+
+`;
+
+exports[`connect theme 3. arrow function for calculate value with return: 3. arrow function for calculate value with return 1`] = `
+
+
+import React from 'react';
+import Text from 'react-native';
+const App=()=>{
+  return <Text s-background-color={(theme)=>{
+    return theme.name==='light'?'red':'white';
+  }}>hello</Text>
+}
+      
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import { useTheme as _useTheme } from "./useTheme";
+import React from "react";
+import Text from "react-native";
+const App = () => {
+  const _theme = _useTheme();
+  return /*#__PURE__*/ React.createElement(
+    Text,
+    {
+      style: {
+        backgroundColor: (() => {
+          return theme.name === "light" ? "red" : "white";
+        })(),
+      },
+    },
+    "hello"
+  );
+};
+
+`;
+
+exports[`connect theme 4. arrow function for calculate value with return: 4. arrow function for calculate value with return 1`] = `
+
+
+import React from 'react';
+import Text from 'react-native';
+const App=()=>{
+  return <Text s-background-color={function(theme){
+    return theme.name==='light'?'red':'white';
+  }}>hello</Text>
+}
+      
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import { useTheme as _useTheme } from "./useTheme";
+import React from "react";
+import Text from "react-native";
+const App = () => {
+  const _theme = _useTheme();
+  return /*#__PURE__*/ React.createElement(
+    Text,
+    {
+      style: {
+        backgroundColor: (function () {
+          return theme.name === "light" ? "red" : "white";
+        })(),
+      },
+    },
+    "hello"
+  );
+};
+
+`;

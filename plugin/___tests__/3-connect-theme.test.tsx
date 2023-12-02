@@ -19,5 +19,39 @@ pluginTester({
         }
       `,
     },
+    {
+      title: "arrow function for calculate value",
+      code: `
+        import React from 'react';
+        import Text from 'react-native';
+        const App=()=>{
+          return <Text s-background-color={(theme)=>theme.name==='light'?'red':'white'}>hello</Text>
+        }
+      `,
+    },
+    {
+      title: "arrow function for calculate value with return",
+      code: `
+        import React from 'react';
+        import Text from 'react-native';
+        const App=()=>{
+          return <Text s-background-color={(theme)=>{
+            return theme.name==='light'?'red':'white';
+          }}>hello</Text>
+        }
+      `,
+    },
+    {
+      title: "arrow function for calculate value with return",
+      code: `
+        import React from 'react';
+        import Text from 'react-native';
+        const App=()=>{
+          return <Text s-background-color={function(theme){
+            return theme.name==='light'?'red':'white';
+          }}>hello</Text>
+        }
+      `,
+    },
   ],
 });
