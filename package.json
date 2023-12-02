@@ -2,7 +2,7 @@
   "name": "react-native-theme",
   "version": "1.0.0",
   "description": "",
-  "main": "dist/src",
+  "main": "rn",
   "scripts": {
     "test": "jest",
     "build": "tsc"
