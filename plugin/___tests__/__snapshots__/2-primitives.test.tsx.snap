@@ -367,3 +367,31 @@ const App = () => {
 };
 
 `;
+
+exports[`primitives 14. with null value: 14. with null value 1`] = `
+
+
+import React from 'react';
+import Text from 'react-native';
+const App=()=>{
+  return <Text s-transform={null}>hello</Text>
+}
+      
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import React from "react";
+import Text from "react-native";
+const App = () => {
+  return /*#__PURE__*/ React.createElement(
+    Text,
+    {
+      style: {
+        transform: null,
+      },
+    },
+    "hello"
+  );
+};
+
+`;

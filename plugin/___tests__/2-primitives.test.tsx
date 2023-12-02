@@ -145,5 +145,15 @@ pluginTester({
         }
       `,
     },
+    {
+      title: "with null value",
+      code: `
+        import React from 'react';
+        import Text from 'react-native';
+        const App=()=>{
+          return <Text s-transform={null}>hello</Text>
+        }
+      `,
+    },
   ],
 });

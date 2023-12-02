@@ -79,6 +79,7 @@ export const getStyleValue = ({
       case "UnaryExpression":
       case "BinaryExpression":
       case "ArrayExpression":
+      case "NullLiteral":
         return {
           value: attribute.value.expression,
           addThemeImport: false,
