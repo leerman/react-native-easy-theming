@@ -1,8 +1,17 @@
 import { Animated } from "react-native";
 
+type Leaves<T> = T extends object
+  ? {
+      [K in keyof T]: `${Exclude<K, symbol>}${Leaves<T[K]> extends never
+        ? ""
+        : `.${Leaves<T[K]>}`}`;
+    }[keyof T]
+  : never;
+
 export interface TTheme {
   name: string;
 }
+type TThemeKeys = Leaves<TTheme>;
 
 type Prefix = "s-";
 type FlexAlignType =
@@ -113,14 +122,15 @@ interface FlexStyle {
  */
 interface ViewStyle extends FlexStyle {}
 
-type RemappedViewStyles = {
+export type RemappedViewStyles = {
   [Key in keyof ViewStyle as `${Prefix}${Key}`]:
     | ViewStyle[Key]
-    | ((theme: TTheme) => ViewStyle[Key]);
+    | TThemeKeys
+    | ((theme: TTheme) => ViewStyle[Key] | TThemeKeys);
 };
 
-import "react-native";
+// import "react-native";
 
-declare module "react-native" {
-  interface ViewProps extends RemappedViewStyles {}
-}
+// declare module "react-native" {
+//   interface ViewProps extends RemappedViewStyles {}
+// }
