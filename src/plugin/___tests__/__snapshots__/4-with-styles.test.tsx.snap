@@ -1,0 +1,85 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`with styles 1. declaration before style prop: 1. declaration before style prop 1`] = `
+
+
+import React from 'react';
+import Text from 'react-native';
+const App=()=>{
+  return <View s-background-color="red" style={{}}></View>
+}
+      
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import React from "react";
+import Text from "react-native";
+const App = () => {
+  return /*#__PURE__*/ React.createElement(View, {
+    style: [
+      {
+        backgroundColor: "red",
+      },
+      {},
+    ],
+  });
+};
+
+`;
+
+exports[`with styles 2. declaration after style prop: 2. declaration after style prop 1`] = `
+
+
+import React from 'react';
+import Text from 'react-native';
+const App=()=>{
+  return <View style={{}} s-background-color="red"></View>
+}
+        
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import React from "react";
+import Text from "react-native";
+const App = () => {
+  return /*#__PURE__*/ React.createElement(View, {
+    style: [
+      {},
+      {
+        backgroundColor: "red",
+      },
+    ],
+  });
+};
+
+`;
+
+exports[`with styles 3. declaration around style prop: 3. declaration around style prop 1`] = `
+
+
+import React from 'react';
+import Text from 'react-native';
+const App=()=>{
+  return <View s-background-color="white" style={{}} s-background-color="red"></View>
+}
+          
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import React from "react";
+import Text from "react-native";
+const App = () => {
+  return /*#__PURE__*/ React.createElement(View, {
+    style: [
+      {
+        backgroundColor: "white",
+      },
+      {},
+      {
+        backgroundColor: "red",
+      },
+    ],
+  });
+};
+
+`;
