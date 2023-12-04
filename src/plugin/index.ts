@@ -6,7 +6,7 @@ import { addThemeImports } from "./utils/add-theme-imports";
 import { getExistsThemeIdentifier } from "./utils/get-exists-theme-identifier";
 
 const STYLES_PREFIX = "s-";
-const PACKAGE_NAME = "react-native-theme";
+const PACKAGE_NAME = "react-native-easy-theming";
 
 export default function (babel: { types: typeof types }): PluginObj {
   var t = babel.types;

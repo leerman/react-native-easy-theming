@@ -1,4 +1,4 @@
-## react-native-theme
+## react-native-easy-theming
 
 DX friendly theming library for React-Native
 
@@ -7,7 +7,7 @@ DX friendly theming library for React-Native
 1. install package
 
 ```cmd
-yarn add react-native-theme
+yarn add react-native-easy-theming
 ```
 
 2. add babel plugin in babel config
@@ -15,7 +15,7 @@ yarn add react-native-theme
 ```
 module.exports = {
   presets: ['module:@react-native/babel-preset'],
-  plugins: [['react-native-theme/plugin']], //<- add this
+  plugins: [['react-native-easy-theming/plugin']], //<- add this
 };
 ```
 
@@ -36,15 +36,15 @@ export type TMyTheme = typeof light;
 4. connect your theme type to package
 
 ```ts
-// types/react-native-theme.d.ts
+// types/react-native-easy-theming.d.ts
 import { TMyTheme } from "../themes";
-export * from "react-native-theme";
-declare module "react-native-theme" {
+export * from "react-native-easy-theming";
+declare module "react-native-easy-theming" {
   interface TTheme extends TMyTheme {}
 }
 
 export * from "react-native";
-import { RemappedViewStyles } from "react-native-theme";
+import { RemappedViewStyles } from "react-native-easy-theming";
 declare module "react-native" {
   interface ViewProps extends RemappedViewStyles {}
 }
@@ -55,7 +55,11 @@ declare module "react-native" {
 ```ts
 // App.tsx
 import React from "react";
-import { ThemeProvider, useTheme, useThemeChange } from "react-native-theme";
+import {
+  ThemeProvider,
+  useTheme,
+  useThemeChange,
+} from "react-native-easy-theming";
 import { themes } from "./themes";
 
 export const App = () => {

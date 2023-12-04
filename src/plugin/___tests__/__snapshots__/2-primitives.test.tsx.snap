@@ -464,7 +464,7 @@ const App=()=>{
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
-import { useTheme as _useTheme } from "react-native-theme";
+import { useTheme as _useTheme } from "react-native-easy-theming";
 import React from "react";
 import Text from "react-native";
 const App = () => {
@@ -500,7 +500,7 @@ const App=()=>{
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
-import { useTheme as _useTheme } from "react-native-theme";
+import { useTheme as _useTheme } from "react-native-easy-theming";
 import React from "react";
 import Text from "react-native";
 const App = () => {
