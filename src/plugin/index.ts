@@ -3,8 +3,10 @@ import { getStyleValue } from "./utils/get-style-value";
 import { mapStyleName } from "./utils/map-style-name";
 import { transformStyleName } from "./utils/transform-style-name";
 import { addThemeImports } from "./utils/add-theme-imports";
+import { getExistsThemeIdentifier } from "./utils/get-exists-theme-identifier";
 
 const STYLES_PREFIX = "s-";
+const PACKAGE_NAME = "react-native-theme";
 
 export default function (babel: { types: typeof types }): PluginObj {
   var t = babel.types;
@@ -12,8 +14,16 @@ export default function (babel: { types: typeof types }): PluginObj {
   return {
     visitor: {
       JSXOpeningElement(path, { opts }) {
+        const existIds = getExistsThemeIdentifier({
+          path,
+          packageName: PACKAGE_NAME,
+        });
         const prefix = (opts as any).prefix ?? STYLES_PREFIX;
-        const themeIdentifier = path.scope.generateUidIdentifier("theme");
+        const useThemeUid =
+          existIds.useThemeIdentifier ??
+          path.scope.generateUidIdentifier("useTheme");
+        const themeUid =
+          existIds.themeIdentifier ?? path.scope.generateUidIdentifier("theme");
 
         if (path.node.name.type === "JSXIdentifier") {
           let shouldAddThemeImport = false;
@@ -42,7 +52,7 @@ export default function (babel: { types: typeof types }): PluginObj {
               const { addThemeImport, value } = getStyleValue({
                 path,
                 attribute: attr,
-                themeIdentifier,
+                themeIdentifier: themeUid,
                 key: rawStyleName,
                 t,
               });
@@ -102,7 +112,15 @@ export default function (babel: { types: typeof types }): PluginObj {
           });
 
           if (shouldAddThemeImport) {
-            addThemeImports({ path, t, themeIdentifier });
+            addThemeImports({
+              path,
+              t,
+              themeUid,
+              useThemeUid,
+              packageName: PACKAGE_NAME,
+              shouldAddImportStatement: !existIds.useThemeIdentifier,
+              shouldAddThemeDeclareStatement: !existIds.themeIdentifier,
+            });
           }
         }
       },

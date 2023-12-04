@@ -3,32 +3,39 @@ import { NodePath, types } from "@babel/core";
 export const addThemeImports = ({
   path,
   t,
-  themeIdentifier,
+  themeUid,
+  useThemeUid,
+  packageName,
+  shouldAddImportStatement,
+  shouldAddThemeDeclareStatement,
 }: {
   path: NodePath<types.JSXOpeningElement>;
-  themeIdentifier: types.Identifier;
+  themeUid: types.Identifier;
+  useThemeUid: types.Identifier;
+  packageName: string;
   t: typeof types;
+  shouldAddImportStatement: boolean;
+  shouldAddThemeDeclareStatement: boolean;
 }) => {
   const parentFunction = path.getFunctionParent();
   if (parentFunction.node.body.type !== "BlockStatement") return;
 
-  const useThemeIdentifier = path.scope.generateUidIdentifier("use-theme");
-  const themeDeclaration = t.variableDeclaration("const", [
-    t.variableDeclarator(
-      themeIdentifier,
-      t.callExpression(useThemeIdentifier, [])
-    ),
-  ]);
-
-  parentFunction.node.body.body.unshift(themeDeclaration);
-
   const program = path.scope.getProgramParent();
   if (program.path.node.type !== "Program") return;
 
-  const themeImport = t.importDeclaration(
-    [t.importSpecifier(useThemeIdentifier, t.identifier("useTheme"))],
-    t.stringLiteral("react-native-theme")
-  );
+  if (shouldAddThemeDeclareStatement) {
+    const themeDeclaration = t.variableDeclaration("const", [
+      t.variableDeclarator(themeUid, t.callExpression(useThemeUid, [])),
+    ]);
+    parentFunction.node.body.body.unshift(themeDeclaration);
+  }
 
-  program.path.node.body.unshift(themeImport);
+  if (shouldAddImportStatement) {
+    const themeImport = t.importDeclaration(
+      [t.importSpecifier(useThemeUid, t.identifier("useTheme"))],
+      t.stringLiteral(packageName)
+    );
+
+    program.path.node.body.unshift(themeImport);
+  }
 };

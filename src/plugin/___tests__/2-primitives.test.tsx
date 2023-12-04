@@ -185,5 +185,19 @@ pluginTester({
         }
       `,
     },
+    {
+      title: "with 2 nested components",
+      code: `
+        import React from 'react';
+        import Text from 'react-native';
+        const App=()=>{
+          return (
+            <View s-padding="paddings.max">
+              <Text s-color="colors.primary">hello</Text>
+            </View>
+          )
+        }
+      `,
+    },
   ],
 });

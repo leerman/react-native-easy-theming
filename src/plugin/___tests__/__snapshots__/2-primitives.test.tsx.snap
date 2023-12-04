@@ -483,3 +483,45 @@ const App = () => {
 };
 
 `;
+
+exports[`primitives 18. with 2 nested components: 18. with 2 nested components 1`] = `
+
+
+import React from 'react';
+import Text from 'react-native';
+const App=()=>{
+  return (
+    <View s-padding="paddings.max">
+      <Text s-color="colors.primary">hello</Text>
+    </View>
+  )
+}
+      
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import { useTheme as _useTheme } from "react-native-theme";
+import React from "react";
+import Text from "react-native";
+const App = () => {
+  const _theme = _useTheme();
+  return /*#__PURE__*/ React.createElement(
+    View,
+    {
+      style: {
+        padding: _theme.paddings.max,
+      },
+    },
+    /*#__PURE__*/ React.createElement(
+      Text,
+      {
+        style: {
+          color: _theme.colors.primary,
+        },
+      },
+      "hello"
+    )
+  );
+};
+
+`;
