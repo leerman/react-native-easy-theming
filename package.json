@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "rn",
-  "types": "rn/index.d.ts",
+  "types": "index.d.ts",
   "scripts": {
     "test": "jest",
     "build": "tsc"

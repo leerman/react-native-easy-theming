@@ -2,7 +2,6 @@
   "compilerOptions": {
     "outDir": ".",
     "skipLibCheck": true,
-    "declaration": true,
     "jsx": "react-native"
   },
   "include": ["src"],

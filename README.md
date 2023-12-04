@@ -42,12 +42,6 @@ export * from "react-native-easy-theming";
 declare module "react-native-easy-theming" {
   interface TTheme extends TMyTheme {}
 }
-
-export * from "react-native";
-import { RemappedViewStyles } from "react-native-easy-theming";
-declare module "react-native" {
-  interface ViewProps extends RemappedViewStyles {}
-}
 ```
 
 5. connect theme provider to your app
