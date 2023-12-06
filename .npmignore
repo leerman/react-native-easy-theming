@@ -1,0 +1,6 @@
+*
+!plugin/**
+!rn/**
+!package.json
+!README.md
+!index.d.ts
