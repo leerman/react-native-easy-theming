@@ -72,15 +72,43 @@ export const App = () => {
 
 ```ts
 import React from "react";
-import { View } from "react-native";
+import { View, ViewStyle } from "react-native";
 
-const Component = () => {
+const Component = (props: { style: ViewStyle }) => {
   return (
-    <View s-background-color="color.background">
+    <View
+      s-background-color="color.background"
+      s-opacity={(theme) => (theme.name === "dark" ? 0.5 : 0.7)}
+      style={props.style}
+      s-padding={20}
+    >
       {
         //
       }
     </View>
   );
+};
+```
+
+Code above will transform by babel to something like:
+
+```
+import { useTheme as _useTheme } from "react-native-easy-theming";
+import React from "react";
+import { View, ViewStyle } from "react-native";
+const Component = ({ style }) => {
+  const _theme = _useTheme();
+  return /*#__PURE__*/ React.createElement(View, {
+    style: [
+      {
+        backgroundColor: _theme.color.background,
+        opacity: (() => (_theme.name === "dark" ? 0.5 : 0.7))(),
+      },
+      style,
+      {
+        padding: 20,
+      },
+    ],
+  });
 };
 ```
