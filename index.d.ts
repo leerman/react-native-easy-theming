@@ -26,7 +26,7 @@ declare module "react-native-easy-theming" {
     | null;
   type AnimatableNumericValue = number | Animated.AnimatedNode;
   type AnimatableStringValue = string | Animated.AnimatedNode;
-  type ColorValue = string;
+  type ColorValue = never;
   /**
    * Flex Prop Types
    * @see https://reactnative.dev/docs/flexbox
@@ -328,17 +328,44 @@ declare module "react-native-easy-theming" {
     "object-fit"?: "cover" | "contain" | "fill" | "scale-down" | undefined;
   }
 
+  type ExcludedStyles =
+    | "object-fit"
+    | "overflow"
+    | "backface-visibility"
+    | "resize-mode"
+    | "testID"
+    | "text-transform"
+    | "text-decoration-style"
+    | "text-decoration-line"
+    | "text-align"
+    | "font-weight"
+    | "font-style"
+    | "pointer-events"
+    | "border-style"
+    | "border-curve"
+    | "transform"
+    | "direction"
+    | "position"
+    | "justify-content"
+    | "flex-wrap"
+    | "flex-direction"
+    | "display"
+    | "align-self"
+    | "align-items"
+    | "align-content";
+
   type ReamapedStyles<T extends object> = {
     [Key in keyof T as `${Prefix}${string & Key}`]:
       | T[Key]
-      | TThemeKeys
-      | ((theme: TTheme) => T[Key] | TThemeKeys);
+      | (Key extends ExcludedStyles ? never : TThemeKeys)
+      | ((
+          theme: TTheme
+        ) => T[Key] | (Key extends ExcludedStyles ? never : TThemeKeys));
   };
 
   export type RemappedViewStyles = ReamapedStyles<ViewStyleNew>;
   export type RemappedTextStyles = ReamapedStyles<TextStyleNew>;
   export type RemappedImageStyles = ReamapedStyles<ImageStyleNew>;
-
   export declare const ThemeProvider: ({
     activeTheme,
     onChange,
